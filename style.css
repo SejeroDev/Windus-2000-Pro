@@ -1,0 +1,249 @@
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Tahoma", sans-serif;
+    background-image: url('Bliss.jpg'); /* Windows XP background */
+    background-size: cover; 
+    background-repeat: no-repeat;
+    color: #000;
+}
+
+#desktop {
+    position: relative;
+    height: 100%;
+}
+
+/* Desktop icons */
+.icon {
+    position: absolute;
+    width: 80px;
+    text-align: center;
+    color: black; 
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+    border: 2px solid transparent;
+}
+
+/* Cambiar el fondo durante el jumpscare */
+.jumpscare-active {
+    background-image: url('BJ.jpg'); /* Asegúrate de tener esta imagen */
+    background-size: cover; 
+}
+
+
+.icon img {
+    width: 100%;
+    height: auto;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    color: #ffcc00;
+    border-color: #ffcc00;
+}
+
+#myComputer { top: 50px; left: 50px; }
+#recycleBin { top: 150px; left: 50px; }
+#myDocuments { top: 250px; left: 50px; }
+#internetExplorer { top: 350px; left: 50px; }
+#isoInfo { top: 150px; left: 200px; }
+
+/* Window styles */
+.window {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    display: none;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: opacity 0.5s;
+}
+
+.window-header {
+    background-color: #4e8cff;
+    color: #ffffff;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-title {
+    font-weight: bold;
+}
+
+.window-buttons {
+    display: flex;
+}
+
+.window-buttons button {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.window-buttons button:hover {
+    color: #ff3366;
+}
+
+/* Taskbar */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to top, #d4d0c8, #a6a6a6); /* Más clásico */
+    border-top: 2px solid #000;
+    box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 9999;
+}
+
+.taskbar-icon {
+    padding: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: #d4d0c8; /* Fondo más claro */
+    border: 1px solid #a0a0a0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Sombra clásica */
+}
+
+.taskbar-icon img {
+    width: 20px; /* Ajuste de tamaño para que los iconos se vean más consistentes */
+    height: 20px;
+    margin-right: 5px;
+}
+
+.taskbar-icon:hover {
+    background-color: #c0c0c0;
+}
+
+#start-button {
+    background: linear-gradient(to bottom, #4e8cff, #0066cc); /* Gradiente al estilo XP */
+    border: 2px solid #004080;
+    border-radius: 3px;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Sombra al botón */
+}
+
+#start-button:hover {
+    background: linear-gradient(to bottom, #357ae8, #2e6db5);
+    transform: scale(1.05);
+}
+
+/* Clock styles */
+#clock {
+    margin-left: auto;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0 10px;
+    transition: color 0.3s;
+}
+
+#clock:hover {
+    color: #ffcc00;
+}
+
+
+/* Start menu styles */
+#start-menu {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    width: 200px;
+    background-color: #ffffff;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    display: none; 
+    z-index: 1000;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.start-menu-inner {
+    display: flex;
+}
+
+.start-menu-left {
+    padding: 10px;
+}
+
+.start-menu-right {
+    padding: 10px;
+    border-left: 1px solid #ccc;
+}
+
+.menu-item {
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #d4d0c8;
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+/* Error and update window styles */
+#errorWindow, #updateWindow {
+    width: 300px;
+    height: 200px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    display: none; 
+    flex-direction: column;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#errorWindow .window-body, #updateWindow .window-body {
+    padding: 10px;
+}
+
+/* Progress bar styles */
+#progress-bar {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #000;
+    transition: background-color 0.5s;
+}
+
+#progress {
+    height: 20px;
+    background-color: #4caf50;
+    transition: width 0.3s;
+}
+
+/* Clock styles */
+#clock {
+    margin-left: auto;
+    color: black;
+    transition: color 0.3s;
+}
+
+#clock:hover {
+    color: #ffcc00;
+}
