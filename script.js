@@ -168,12 +168,15 @@ function showPayMeFile() {
 function startPuzzles() {
     // Array de preguntas sobre Windows XP
 const preguntas = [
-    "What is the name of the famous mascot of Windows XP?",
-    "Which feature allows users to restore their system to a previous state?",
-    "What year was Windows XP released?",
-    "What color scheme was used for the default Windows XP theme?",
-    "What was the main browser included with Windows XP?"
+    { pregunta: "What is the name of the famous mascot of Windows XP?", respuesta: "Clippy" },
+    { pregunta: "Which feature allows users to restore their system to a previous state?", respuesta: "System Restore" },
+    { pregunta: "What year was Windows XP released?", respuesta: "2001" },
+    { pregunta: "What color scheme was used for the default Windows XP theme?", respuesta: "Luna" },
+    { pregunta: "What was the main browser included with Windows XP?", respuesta: "Internet Explorer" }
 ];
+
+let indicePregunta = 0; // Índice para seguir la pregunta actual
+let respuestasCorrectas = 0; // Contador de respuestas correctas
 
 // Función para mostrar un mensaje en la página
 function mostrarMensaje(texto) {
@@ -190,26 +193,54 @@ function mostrarMensaje(texto) {
     mensajeDiv.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)'; // Sombra
     document.body.appendChild(mensajeDiv); // Agrega el div al body
 
-    // Cierra la página después de 2 segundos
+    // Espera 2 segundos antes de intentar cerrar la página
     setTimeout(() => {
-        window.close(); // Intenta cerrar la página
+        window.close(); // Cierra la página
     }, 2000);
 }
 
-// Función para mostrar una pregunta aleatoria
+// Función para mostrar la siguiente pregunta
 function mostrarPregunta() {
-    const preguntaAleatoria = preguntas[Math.floor(Math.random() * preguntas.length)]; // Selecciona una pregunta aleatoria
-    const respuesta = prompt(preguntaAleatoria, "Type your answer here"); // Muestra un cuadro de diálogo para la respuesta
+    if (indicePregunta < preguntas.length) {
+        // Crea elementos para mostrar la pregunta y la caja de texto
+        const preguntaDiv = document.createElement('div');
+        const inputDiv = document.createElement('div');
+        const input = document.createElement('input');
+        const boton = document.createElement('button');
 
-    // Muestra el mensaje basado en la respuesta
-    if (respuesta !== null) {
-        mostrarMensaje("I congratulate you, however, as you read, you will pay the consequences."); // Mensaje para cualquier respuesta
+        // Configura los elementos
+        preguntaDiv.textContent = preguntas[indicePregunta].pregunta; // Muestra la pregunta actual
+        input.placeholder = "Type your answer here"; // Texto de la caja de texto
+        boton.textContent = "Submit"; // Texto del botón
+
+        // Añade el evento de clic al botón
+        boton.onclick = function() {
+            const respuesta = input.value; // Obtiene la respuesta del campo de texto
+            input.value = ""; // Limpia el campo de entrada
+
+            // Verifica si la respuesta es correcta
+            if (respuesta.trim().toLowerCase() === preguntas[indicePregunta].respuesta.toLowerCase()) {
+                respuestasCorrectas++; // Incrementa el contador de respuestas correctas
+                indicePregunta++; // Avanza a la siguiente pregunta
+                preguntaDiv.remove(); // Remueve la pregunta anterior
+                inputDiv.remove(); // Remueve la caja de texto anterior
+                mostrarPregunta(); // Muestra la siguiente pregunta
+            } else {
+                mostrarMensaje("You answered one or more questions incorrectly. You lose."); // Mensaje de pérdida
+            }
+        };
+
+        // Añade los elementos al documento
+        inputDiv.appendChild(input);
+        inputDiv.appendChild(boton);
+        document.body.appendChild(preguntaDiv);
+        document.body.appendChild(inputDiv);
     } else {
-        mostrarMensaje("You didn't answer. The page will close."); // Mensaje si no se responde
+        mostrarMensaje("You answered all questions correctly! however, as you read, you will pay the consequences."); // Mensaje si todas son correctas
     }
 }
 
-// Llama a la función al cargar el script
+// Inicia el juego mostrando la primera pregunta
 mostrarPregunta();
 
 }
