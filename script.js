@@ -211,7 +211,7 @@ function mostrarPregunta() {
         // Configura los elementos
         preguntaDiv.textContent = preguntas[indicePregunta].pregunta; // Muestra la pregunta actual
         preguntaDiv.style.position = 'fixed'; // Posiciona la pregunta
-        preguntaDiv.style.top = '50%'; // Centra verticalmente
+        preguntaDiv.style.top = '25%'; // Centra verticalmente
         preguntaDiv.style.left = '50%'; // Centra horizontalmente
         preguntaDiv.style.transform = 'translate(-50%, -50%)'; // Ajusta el centro
         preguntaDiv.style.fontSize = '20px'; // Ajusta el tamaño de fuente
