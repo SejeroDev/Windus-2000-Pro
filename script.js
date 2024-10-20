@@ -210,11 +210,25 @@ function mostrarPregunta() {
 
         // Configura los elementos
         preguntaDiv.textContent = preguntas[indicePregunta].pregunta; // Muestra la pregunta actual
+        preguntaDiv.style.position = 'fixed'; // Posiciona la pregunta
+        preguntaDiv.style.top = '50%'; // Centra verticalmente
+        preguntaDiv.style.left = '50%'; // Centra horizontalmente
+        preguntaDiv.style.transform = 'translate(-50%, -50%)'; // Ajusta el centro
+        preguntaDiv.style.fontSize = '20px'; // Ajusta el tamaño de fuente
+
         input.placeholder = "Type your answer here"; // Texto de la caja de texto
+        input.style.marginLeft = '10px'; // Espacio a la izquierda del input
+        input.style.width = '300px'; // Ancho de la caja de texto
+        input.style.verticalAlign = 'middle'; // Alineación vertical
+
         boton.textContent = "Submit"; // Texto del botón
+        boton.style.marginLeft = '10px'; // Espacio a la izquierda del botón
 
         // Añade el evento de clic al botón
         boton.onclick = function() {
+            // Evita múltiples clics
+            boton.disabled = true;
+
             const respuesta = input.value; // Obtiene la respuesta del campo de texto
             input.value = ""; // Limpia el campo de entrada
 
@@ -235,8 +249,16 @@ function mostrarPregunta() {
         inputDiv.appendChild(boton);
         document.body.appendChild(preguntaDiv);
         document.body.appendChild(inputDiv);
+
+        // Posiciona inputDiv para centrarlo al lado de la pregunta
+        inputDiv.style.position = 'fixed'; // Posiciona la caja de texto
+        inputDiv.style.top = '50%'; // Centra verticalmente
+        inputDiv.style.left = '50%'; // Centra horizontalmente
+        inputDiv.style.transform = 'translate(-50%, -50%)'; // Ajusta el centro
+        inputDiv.style.display = 'flex'; // Usar flex para alinear horizontalmente
+        inputDiv.style.alignItems = 'center'; // Alinea verticalmente en el centro
     } else {
-        mostrarMensaje("You answered all questions correctly! however, as you read, you will pay the consequences."); // Mensaje si todas son correctas
+        mostrarMensaje("You answered all questions correctly! However, as you read, you will pay the consequences."); // Mensaje si todas son correctas
     }
 }
 
